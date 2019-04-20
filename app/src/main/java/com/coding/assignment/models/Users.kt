@@ -1,3 +1,3 @@
 package com.coding.assignment.models
 
-data class Users(val page: Int, val per_page: Int, val total: Int, val total_pages: Int, val users: List<User>)
+data class Users(val page: Int, val per_page: Int, val total: Int, val total_pages: Int, val data: List<User>)

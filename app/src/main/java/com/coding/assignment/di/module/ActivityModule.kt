@@ -1,6 +1,8 @@
 package com.coding.assignment.di.module
 
 import android.app.Activity
+import com.coding.assignment.ui.list.ContactListContract
+import com.coding.assignment.ui.list.ContactListPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -12,9 +14,9 @@ class ActivityModule(private var activity: Activity) {
         return activity
     }
 
-//    @Provides
-//    fun providePresenter(): MainContract.Presenter {
-//        return MainPresenter()
-//    }
+    @Provides
+    fun providePresenter(): ContactListContract.Presenter {
+        return ContactListPresenter()
+    }
 
 }

@@ -7,6 +7,6 @@ import dagger.Component
 @Component(modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
 
-    fun inject(mainActivity: ContactListActivity)
+    fun inject(contactListActivity: ContactListActivity)
 
 }
