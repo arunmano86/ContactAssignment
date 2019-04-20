@@ -1,17 +1,18 @@
-package com.coding.assignment.ui.list
+package com.coding.assignment.ui.edit
 
+import android.content.Intent
 import android.util.Log
 import com.coding.assignment.api.ApiServiceInterface
 import com.coding.assignment.models.User
 import com.coding.assignment.models.Users
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ContactListPresenter : ContactListContract.Presenter{
+class ContactEditPresenter : ContactEditContract.Presenter{
+
     private val subscriptions = CompositeDisposable()
-    private lateinit var view: ContactListContract.View
+    private lateinit var view: ContactEditContract.View
     private val api: ApiServiceInterface = ApiServiceInterface.create()
 
     override fun subscribe() {
@@ -22,41 +23,40 @@ class ContactListPresenter : ContactListContract.Presenter{
         subscriptions.clear()
     }
 
-    override fun attach(view: ContactListContract.View) {
+    override fun attach(view: ContactEditContract.View) {
         Log.d("ContactListPresenter", "======attach==========>")
         this.view = view
-        //view.showListFragment() // as default
     }
 
-    override fun loadData() {
+    override fun loadData(user: User, position: Int) {
+        Log.d("ContactListPresenter", "======loadData==========>")
+        view.loadDataSuccess(user)
+    }
+
+    override fun updateUser(user: User) {
         Log.d("ContactListPresenter", "======loadData==========>")
         this.view.showProgress(true)
-        var subscribe = api.getUsersList(1, 20).subscribeOn(Schedulers.io())
+
+        var subscribe = api.updateItem(user.id.toString(), user).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ users: Users? ->
+                .subscribe({ user: User ->
                     view.showProgress(false)
-                    view.loadDataSuccess(users!!.data)
+                    view.isUpdateData(true)
+
                 }, { error ->
                     view.showProgress(false)
+                    view.isUpdateData(false)
                     view.showErrorMessage(error.localizedMessage)
                 })
 
         subscriptions.add(subscribe)
     }
 
-    override fun loadDataAll() {
+    override fun backContactDetail(user: User) {
+        view.isUpdateData(false)
     }
 
-    override fun deleteItem(item: User) {
-
+    override fun cancelAction() {
+        view.isUpdateData(false)
     }
-
-    override fun updateItem(item: User) {
-
-    }
-
-
-//    override fun onDrawerOptionAboutClick() {
-//        view.showAboutFragment()
-//    }
 }

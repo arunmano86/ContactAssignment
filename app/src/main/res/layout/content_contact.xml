@@ -9,17 +9,39 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/colorPrimaryDark">
-
+        android:layout_height="280dp"
+        android:background="@drawable/header_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTxt"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/green"
+            android:text="Edit"
+            android:textStyle="normal"
+            android:onClick="onClickEditContact"
+            android:textSize="17sp"
+            />
 
         <ImageView
             android:id="@+id/profileContactPhoto"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:src="@drawable/default_user"
-            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
             />
+        <TextView
+            android:id="@+id/personName"
+            android:layout_below="@+id/profileContactPhoto"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"/>
 
     </RelativeLayout>
 
@@ -35,52 +57,6 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/person_location_layout"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="First Name"
-                    android:textSize="17sp"
-                    />
-
-                <TextView
-                    android:id="@+id/personFirstName"
-                    android:paddingLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Last Name"
-                    android:textSize="17sp"
-                    />
-
-                <TextView
-                    android:paddingLeft="5dp"
-                    android:id="@+id/personLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/phone_location_layout"
@@ -101,7 +77,8 @@
                     android:paddingLeft="5dp"
                     android:id="@+id/personId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"/>
 
             </LinearLayout>
 

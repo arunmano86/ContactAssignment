@@ -3,17 +3,18 @@ package com.coding.assignment.ui.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.coding.assignment.R
 import com.coding.assignment.di.component.DaggerActivityComponent
 import com.coding.assignment.di.module.ActivityModule
 import com.coding.assignment.models.User
-import com.coding.assignment.ui.details.UserDetailsActivity
+import com.coding.assignment.ui.add.ContactAddActivity
+import com.coding.assignment.ui.details.ContactDetailsActivity
 import com.coding.assignment.util.Constants
 import kotlinx.android.synthetic.main.activity_list_contact.*
 import javax.inject.Inject
@@ -22,6 +23,7 @@ class ContactListActivity : AppCompatActivity(), ContactListContract.View, ListA
 
     @Inject
     lateinit var presenter: ContactListContract.Presenter
+    lateinit var adapter: ListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +69,7 @@ class ContactListActivity : AppCompatActivity(), ContactListContract.View, ListA
 
     override fun loadDataSuccess(list: List<User>) {
         Log.d(TAG, "======loadDataSuccess==========>${list.size}")
-        var adapter = ListAdapter(applicationContext, list.toMutableList(), this)
+        adapter = ListAdapter(applicationContext, list.toMutableList(), this)
         recyclerView!!.setLayoutManager(LinearLayoutManager(this))
         recyclerView!!.setAdapter(adapter)
     }
@@ -78,7 +80,7 @@ class ContactListActivity : AppCompatActivity(), ContactListContract.View, ListA
 
     override fun itemDetail(user: User, position: Int) {
         Log.d(TAG, "$position+======loadDataSuccess==========>${user.first_name}")
-        val intent = Intent(this, UserDetailsActivity::class.java)
+        val intent = Intent(this, ContactDetailsActivity::class.java)
         intent.putExtra(Constants.DATA_USER_POSITION, position);
         intent.putExtra(Constants.DATA_USER_OBJECT, user)
         startActivityForResult(intent, Constants.ACTIVITY_RESULT_USER_DETAILS)
@@ -90,14 +92,34 @@ class ContactListActivity : AppCompatActivity(), ContactListContract.View, ListA
             when(requestCode) {
                 Constants.ACTIVITY_RESULT_USER_DETAILS -> {
                     Log.d(TAG, "======ACTIVITY_RESULT_USER_DETAILS==========>")
-                }
-                Constants.ACTIVITY_RESULT_USER_EDIT -> {
-                    Log.d(TAG, "======ACTIVITY_RESULT_USER_EDIT==========>")
+                    var bundle :Bundle ?=data!!.extras
+                    var position = data!!.getIntExtra(Constants.DATA_USER_POSITION, -1)
+                    var user : User  = bundle!!.getParcelable(Constants.DATA_USER_OBJECT)
+                    adapter.updateAt(position, user)
                 }
                 Constants.ACTIVITY_RESULT_USER_CREATE -> {
                     Log.d(TAG, "======ACTIVITY_RESULT_USER_CREATE==========>")
+                    var bundle :Bundle ?=data!!.extras
+                    var user : User  = bundle!!.getParcelable(Constants.DATA_USER_OBJECT)
+                    adapter.addUser(user)
                 }
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_add, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.addMenu -> {
+            val intent = Intent(this, ContactAddActivity::class.java)
+            startActivityForResult(intent, Constants.ACTIVITY_RESULT_USER_CREATE)
+            true
+        } else -> {
+            super.onOptionsItemSelected(item)
         }
     }
 

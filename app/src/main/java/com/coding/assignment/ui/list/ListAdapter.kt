@@ -68,6 +68,11 @@ class ListAdapter(private val context: Context, private val list: MutableList<Us
         notifyItemChanged(position)
     }
 
+    fun addUser(user: User) {
+        list.add(user)
+        notifyItemChanged(list.size - 1)
+    }
+
     class ListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val layout = itemView.findViewById<LinearLayout>(R.id.contact_layout)
         val contactName = itemView.findViewById<TextView>(R.id.contact_name)

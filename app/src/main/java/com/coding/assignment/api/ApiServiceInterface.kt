@@ -1,5 +1,6 @@
 package com.coding.assignment.api
 
+
 import com.coding.assignment.models.User
 import com.coding.assignment.models.Users
 import com.coding.assignment.util.Constants
@@ -16,11 +17,11 @@ interface ApiServiceInterface {
     @GET("users")
     fun getUsersList(@Query("page") page: Int, @Query("per_page") perPage : Int): Observable<Users>
 
-    @POST("/users")
-    fun createUser(@Body user: User): Call<Boolean>
+    @POST("users")
+    fun createUser(@Body user : HashMap<String, String> ): Observable<User>
 
-    @PUT("/users/{id}")
-    fun updateItem(@Path("id") itemId: String, @Body user: User): Call<Boolean>
+    @PUT("users/{id}")
+    fun updateItem(@Path("id") itemId: String, @Body user: User): Observable<User>
 
     companion object Factory {
         fun create(): ApiServiceInterface {

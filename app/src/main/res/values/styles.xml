@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.WhiteColorAccent">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.WhiteEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="colorControlNormal">@color/lightGray</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+        <item name="colorControlHighlight">@android:color/darker_gray</item>
+    </style>
 </resources>
