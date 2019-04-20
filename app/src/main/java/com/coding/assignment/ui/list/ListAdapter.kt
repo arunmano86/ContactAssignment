@@ -37,8 +37,8 @@ class ListAdapter(private val context: Context, private val list: MutableList<Us
         holder.contactName.text = "${user.first_name} ${user.last_name}"
         if(!user.avatar.isNullOrEmpty()) {
             val transformation = RoundedTransformationBuilder()
-                    .borderColor(Color.WHITE)
-                    .borderWidthDp(3f)
+                    .borderColor(Color.GRAY)
+                    .borderWidthDp(1f)
                     .cornerRadiusDp(60f)
                     .oval(false)
                     .build()

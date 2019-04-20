@@ -1,5 +1,7 @@
 package com.coding.assignment.ui.list
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +13,8 @@ import com.coding.assignment.R
 import com.coding.assignment.di.component.DaggerActivityComponent
 import com.coding.assignment.di.module.ActivityModule
 import com.coding.assignment.models.User
+import com.coding.assignment.ui.details.UserDetailsActivity
+import com.coding.assignment.util.Constants
 import kotlinx.android.synthetic.main.activity_list_contact.*
 import javax.inject.Inject
 
@@ -73,7 +77,28 @@ class ContactListActivity : AppCompatActivity(), ContactListContract.View, ListA
     }
 
     override fun itemDetail(user: User, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d(TAG, "$position+======loadDataSuccess==========>${user.first_name}")
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra(Constants.DATA_USER_POSITION, position);
+        intent.putExtra(Constants.DATA_USER_OBJECT, user)
+        startActivityForResult(intent, Constants.ACTIVITY_RESULT_USER_DETAILS)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK ) {
+            when(requestCode) {
+                Constants.ACTIVITY_RESULT_USER_DETAILS -> {
+                    Log.d(TAG, "======ACTIVITY_RESULT_USER_DETAILS==========>")
+                }
+                Constants.ACTIVITY_RESULT_USER_EDIT -> {
+                    Log.d(TAG, "======ACTIVITY_RESULT_USER_EDIT==========>")
+                }
+                Constants.ACTIVITY_RESULT_USER_CREATE -> {
+                    Log.d(TAG, "======ACTIVITY_RESULT_USER_CREATE==========>")
+                }
+            }
+        }
     }
 
     companion object {
