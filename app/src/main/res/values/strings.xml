@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">ContactAssignment</string>
+    <string name="app_name">Contact</string>
+
+    <string name="message">message</string>
+    <string name="call">call</string>
+    <string name="email">email</string>
+    <string name="favourite">favourite</string>
+
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="user_id">User Id</string>
 </resources>

@@ -23,29 +23,28 @@
         >
 
         <TextView
+            android:id="@+id/doneTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/doneTxt"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/green"
-            android:text="Done"
             android:onClick="onClickDone"
-            android:textSize="17sp"
-            />
+            android:text="@string/done"
+            android:textColor="@color/green"
+            android:textSize="17sp" />
+
         <TextView
+            android:id="@+id/cancelTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cancelTxt"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/green"
-            android:text="Cancel"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:onClick="onClickCancel"
-            android:textSize="17sp"
-            />
+            android:text="@string/cancel"
+            android:textColor="@color/green"
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/profileContactPhotoEdit"
@@ -82,9 +81,8 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="First Name"
-                    android:textSize="17sp"
-                    />
+                    android:text="@string/first_name"
+                    android:textSize="17sp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/personFirstNameLayout"
@@ -95,20 +93,20 @@
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/personFirstNameEdt"
+                        style="@style/AppTheme.WhiteEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:hint="Frist Name"
+                        android:hint="@string/first_name"
                         android:imeActionId="6"
                         android:imeActionLabel="AB"
                         android:imeOptions="actionNext"
                         android:maxLines="1"
                         android:nextFocusDown="@id/personLastNameEdt"
                         android:nextFocusForward="@id/personLastNameEdt"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/darkGray"
-                        style="@style/AppTheme.WhiteEditText" />
+                        android:textColorHint="@color/darkGray" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -134,9 +132,8 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Last Name"
-                    android:textSize="17sp"
-                    />
+                    android:text="@string/last_name"
+                    android:textSize="17sp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/personLastNameLayout"
@@ -147,18 +144,18 @@
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/personLastNameEdt"
+                        style="@style/AppTheme.WhiteEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:hint="Last Name"
+                        android:hint="@string/last_name"
                         android:imeActionId="6"
                         android:imeActionLabel="AB"
                         android:imeOptions="actionDone"
                         android:maxLines="1"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/darkGray"
-                        style="@style/AppTheme.WhiteEditText" />
+                        android:textColorHint="@color/darkGray" />
 
                 </android.support.design.widget.TextInputLayout>
 
