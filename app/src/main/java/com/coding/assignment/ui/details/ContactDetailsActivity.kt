@@ -84,6 +84,10 @@ class ContactDetailsActivity : AppCompatActivity(), ContactDetailContract.View {
             startActivityForResult(intent, Constants.ACTIVITY_RESULT_USER_EDIT)
     }
 
+    fun onClickHomeContact(view: View) {
+        finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK ) {
